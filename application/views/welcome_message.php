@@ -1,99 +1,64 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Welcome to CodeIgniter</title>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+<!--        <br><br>-->
 
-    <style type="text/css">
+        <h1 class="header center orange-text">Content-Based Image Retrieval</h1>
 
-    ::selection { background-color: #E13300; color: white; }
-    ::-moz-selection { background-color: #E13300; color: white; }
-
-    body {
-        background-color: #FFF;
-        margin: 40px;
-        font: 16px/20px normal Helvetica, Arial, sans-serif;
-        color: #4F5155;
-        word-wrap: break-word;
-    }
-
-    a {
-        color: #003399;
-        background-color: transparent;
-        font-weight: normal;
-    }
-
-    h1 {
-        color: #444;
-        background-color: transparent;
-        border-bottom: 1px solid #D0D0D0;
-        font-size: 24px;
-        font-weight: normal;
-        margin: 0 0 14px 0;
-        padding: 14px 15px 10px 15px;
-    }
-
-    code {
-        font-family: Consolas, Monaco, Courier New, Courier, monospace;
-        font-size: 16px;
-        background-color: #f9f9f9;
-        border: 1px solid #D0D0D0;
-        color: #002166;
-        display: block;
-        margin: 14px 0 14px 0;
-        padding: 12px 10px 12px 10px;
-    }
-
-    #body {
-        margin: 0 15px 0 15px;
-    }
-
-    p.footer {
-        text-align: right;
-        font-size: 16px;
-        border-top: 1px solid #D0D0D0;
-        line-height: 32px;
-        padding: 0 10px 0 10px;
-        margin: 20px 0 0 0;
-    }
-
-    #container {
-        margin: 10px;
-        border: 1px solid #D0D0D0;
-        box-shadow: 0 0 8px #D0D0D0;
-    }
-    </style>
-</head>
-<body>
-
-<div id="container">
-    <h1>Welcome to CodeIgniter!</h1>
-
-    <div id="body">
-
-        <h2><a href="<?php echo site_url('rest-server'); ?>">REST Server Tests</a></h2>
-
-        <?php if (file_exists(FCPATH.'documentation/index.html')) : ?>
-        <h2><a href="<?php echo base_url('documentation/index.html'); ?>" target="_blank">REST Server Documentation</a></h2>
-        <?php endif ?>
-
-        <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-        <p>If you would like to edit this page you'll find it located at:</p>
-        <code>application/views/welcome_message.php</code>
-
-        <p>The corresponding controller for this page is found at:</p>
-        <code>application/controllers/Welcome.php</code>
-
-        <?php if (file_exists(FCPATH.'user_guide/index.html')) : ?>
-        <p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="<?php echo base_url('user_guide/index.html'); ?>" target="_blank">User Guide</a>.</p>
-        <?php endif ?>
+        <div class="row center">
+            <h5 class="header col s12 light">An USTH Group Project of ICT Department Students</h5>
+        </div>
+        <div class="row center" style="border-bottom: solid 2px #f9f9f9; padding-bottom: 20px;">
+            <a href="<?php echo base_url('UI/documentation');?>" id="download-button"
+               class="btn-large waves-effect waves-light orange">Get Started</a>
+        </div>
+        <h4 class="center">OUR TEAM MEMBERS</h4>
     </div>
-
-    <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 
-</body>
-</html>
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m3">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><img src="https://scontent-hkg3-1.xx.fbcdn.net/hphotos-xft1/v/t1.0-9/1426720_1117945221550513_2560907888082845327_n.jpg?oh=18bc607002fe3744411b7423b9d91f04&oe=572C4E58" width="150px" style="border-radius: 50%"></h2>
+                    <h5 class="center">Đỗ Sơn Tùng</h5>
+
+                    <p class="light center">Student of ICT Class 2013-2016</p>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><img src="https://scontent-hkg3-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/10713014_749737101789499_2708384976353751622_n.jpg?oh=445de92c2de822e758fe95b1830b8343&oe=5735E321" width="150px" style="border-radius: 50%"></h2>
+                    <h5 class="center">Cao Anh Quân</h5>
+
+                    <p class="light center">Student of ICT Class 2013-2016</p>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><img src="https://scontent-hkg3-1.xx.fbcdn.net/hphotos-prn2/v/t1.0-9/1391497_463434843763188_2000062473_n.jpg?oh=5bb9464727c7a57366b2a4b183316a13&oe=57450554" width="150px" style="border-radius: 50%"></h2>
+                    <h5 class="center">Trần Phan Anh</h5>
+
+                    <p class="light center">Student of ICT Class 2013-2016</p>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/12289688_940467209356863_8655687487211018228_n.jpg?oh=309756d28a984831bf0fbf01ca1aea64&oe=5739BF00&__gda__=1462352265_6f2d2653bb98a27945b45ecef6330175" width="150px" style="border-radius: 50%"></h2>
+                    <h5 class="center">Nguyễn Minh Tuấn</h5>
+
+                    <p class="light center">Student of ICT Class 2013-2016</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+</div>
