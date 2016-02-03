@@ -36,7 +36,15 @@
         });
     </script>
     <style type="text/css">
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
 
+        main {
+            flex: 1 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -53,7 +61,14 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
+<main>
 <!-- Main Content -->
 <?php $this->load->view($content, isset($data) ? $data : NULL); ?>
+</main>
+<footer class="footer-copyright center">
+        <div class="container">
+            &#169; 2016 Copy Right by DURIO
+        </div>
+</footer>
 </body>
 </html>
