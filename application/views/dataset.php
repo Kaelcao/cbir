@@ -28,7 +28,6 @@
                                     echo '>' . $all_data_set[$i]['dataset_name'] . '</option>';
                                 };?>
                             </select>
-                            <!--                    <label>Data Set</label>-->
                         </div>
                     </div>
                     <div class="col s3" style="padding-top:5px;">
@@ -42,7 +41,7 @@
         <?php if (isset($isSelected)) {
             echo '
                 <div class="col s3" style="padding-top:5px;">
-                    <button class="btn waves-effect waves-light red darken-3">EDIT</button>
+                    <a href="#" class="btn waves-effect waves-light red darken-3">EDIT</a>
                 </div>';
         }?>
     </div>
@@ -50,7 +49,7 @@
     <div class="row">
         <?php if (isset($image_of_dataset) && isset($number_of_image)) {
             for ($j = 0; $j < $number_of_image; $j++) {
-                echo '<div class="col xs12 m3"><img src="' . $image_of_dataset[$j]['url'] . '" width="200px"
+                echo '<div class="col xs12 m3"><img class="hoverable" src="' . $image_of_dataset[$j]['url'] . '" width="200px"
                  height="200px"></div>';
 
             };

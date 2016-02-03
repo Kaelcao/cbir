@@ -4,9 +4,12 @@ application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
 
+application/node_modules
 application/logs/*
 application/config/config.php
 application/config/database.php
+application/Gruntfile.js
+application/package.json
 !application/logs/index.html
 !application/logs/.htaccess
 

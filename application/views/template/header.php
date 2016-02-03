@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Welcome to CBIR</title>
+    <title><?php echo $title?></title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
@@ -71,4 +71,5 @@
         </div>
 </footer>
 </body>
+<script src="//localhost:35729/livereload.js"></script>
 </html>

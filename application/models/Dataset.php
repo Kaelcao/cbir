@@ -16,7 +16,8 @@ class Dataset extends CI_Model {
 
     function GetDataSet($id) {
         $this->load->database();
-        $this->db-select('id', $id);
+        $this->db->select();
+        $this->db->where('id', $id);
         $result = $this->db->get('dataset')->result_array();
 
         return $result;
