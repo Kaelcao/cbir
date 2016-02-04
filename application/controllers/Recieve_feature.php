@@ -12,6 +12,16 @@ class Recieve_feature extends CI_Controller
         echo '<br/>blue: ' . json_encode($histogram->blue);
     }
 
+    public function get_grayscale_histogram($name = '300.jpg')
+    {
+        $query = $this->db->get_where('cbir_index', array('name' => $name));
+        $row = $query->result();
+        $grayscale = json_decode($row[0]->grayscale);
+        echo 'grayscale: ' . json_encode($grayscale);
+
+    }
+
+
     public function receive_show_images()
     {
 //        $avg_list = array();
@@ -30,6 +40,24 @@ class Recieve_feature extends CI_Controller
             $this->indexer->normalize_array($blue);
 
             $images = $this->comparator->get_similar_images($red, $green, $blue, $number_images);
+            foreach ($images as $key => $value) {
+                echo "<img src='$key'/> Value: $value <br/>";
+            }
+        }
+    }
+    public function receive_show_grayscale_images()
+    {
+//        $avg_list = array();
+        $message['message'] = 'Wrong Sending Method';
+        if (empty($_POST)) {
+            echo json_encode($message);
+        } else {
+            $grayscale = json_decode($this->input->post('grayscale'));
+            $number_images = $this->input->post('number');
+
+            $this->indexer->normalize_array($grayscale);
+
+            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images);
             foreach ($images as $key => $value) {
                 echo "<img src='$key'/> Value: $value <br/>";
             }
@@ -84,8 +112,33 @@ class Recieve_feature extends CI_Controller
         var_dump($this->comparator->euclidean_compare($histogram->blue, $blue));
     }
 
-    public function to_gray_scale($name="301.jpg")
+    public function to_gray_scale($name = "301.jpg")
     {
         echo $this->converter->convert_to_grayscale($name);
-	}
+    }
+
+    public function receive_grayscale()
+    {
+        header('Content-Type: application/json');
+//        $avg_list = array();
+        $message['message'] = 'Wrong Sending Method';
+        if (empty($_POST)) {
+            echo json_encode($message);
+        } else {
+            $temp['images'] = array();
+            $grayscale = json_decode($this->input->post('grayscale'));
+            $number_images = $this->input->post('number');
+
+            $this->indexer->normalize_array($grayscale);
+
+            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images);
+            $i = 0;
+            foreach ($images as $key => $value) {
+                $temp['images'][$i]['url'] = $key;
+                $temp['images'][$i]['distance'] = $value;
+                $i++;
+            }
+        }
+        echo json_encode($temp);
+    }
 }

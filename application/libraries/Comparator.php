@@ -43,4 +43,19 @@ class Comparator
         asort($avg_list_with_url);
         return array_slice($avg_list_with_url, 0, $number_images);
     }
+    public function get_similar_images_grayscale($grayscale, $number_images)
+    {
+        $avg_list_with_url = array();
+
+        $query = $this->CI->db->get('cbir_index');
+        foreach ($query->result() as $row) {
+            $histogram = json_decode($row->grayscale);
+            $diff = $this->euclidean_compare($histogram, $grayscale);
+            $avg_list_with_url[$row->url] = $diff;
+//            $avg_list[] = $diff_avg;
+        }
+        //$this->CI->indexer->normalize_array($avg_list_with_url);
+        asort($avg_list_with_url);
+        return array_slice($avg_list_with_url, 0, $number_images);
+    }
 }

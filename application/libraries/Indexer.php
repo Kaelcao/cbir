@@ -26,6 +26,67 @@ class Indexer
         }
     }
 
+    public function convert_grayscale($name = '301.jpg'){
+        $grayscale = [];
+        for ($i = 0; $i < 256; $i++) {
+            $grayscale[$i] = 0;
+        }
+//        $filename = base_url() . '/images/' . $name;
+        $filename_grayscale = base_url() . '/images/grayscale/' . $name;
+
+        $this->CI->converter->convert_to_grayscale($name);
+        $image = imagecreatefromjpeg($filename_grayscale);
+
+        list($width, $height) = getimagesize($filename_grayscale);
+        for ($x = 0; $x < $width; $x++) {
+            for ($y = 0; $y < $height; $y++) {
+                $rgb = imagecolorat($image, $x, $y);
+                $colors = imagecolorsforindex($image, $rgb);
+                $grayscale[$colors['red']] += 1;
+                //var_dump($colors);
+            }
+        }
+        $this->normalize_array($grayscale);
+        return $grayscale;
+    }
+    public function convert_all_grayscale($map)
+    {
+        $total = count($map);
+        $current = 0;
+        $percent = round($current / $total * 100);
+        $alert = "$current is $percent% of $total";
+        foreach ($map as &$name) {
+
+            $histogram = json_encode($this->convert($name));
+
+            $grayscale = json_encode($this->convert_grayscale($name));
+
+            $url = base_url('images/' . $name);
+            $url_grayscale = base_url('images/grayscale/'.$name);
+
+
+            $data = array(
+                'name' => $name,
+                'histogram' => $histogram,
+                'url' => $url,
+                'url_grayscale' => $url_grayscale,
+                'grayscale' => $grayscale
+            );
+            $this->CI->db->insert('cbir_index', $data);
+            $current++;
+            if ($percent < round($current / $total * 100)) {
+                $percent = round($current / $total * 100);
+
+                echo "<span style='position: absolute;z-index:$current;background:#FFF;'>Indexing:" . $percent . "% </span>";
+                echo(str_repeat(' ', 256));
+                if (@ob_get_contents()) {
+                    @ob_end_flush();
+                }
+                flush();
+            }
+        }
+
+    }
 
     public function convert($name = '301.jpg')
     {
