@@ -7,6 +7,12 @@
  */
 
 class UI extends CI_Controller{
+    function __construct(){
+        parent::__construct();
+        $this->load->model('Dataset');
+        $this->load->model('Image');
+    }
+
     function index(){
         $data['content'] = 'welcome_message';
         $data['title'] = 'Welcome to CBIR';
@@ -21,7 +27,6 @@ class UI extends CI_Controller{
     }
 
     function dataset(){
-        $this->load->model('Dataset');
         $data['all_data_set'] = $this->Dataset->GetAllDataSet();
         $data['total_instance'] = $this->Dataset->GetTotalInstance();
         $data['content'] = 'dataset';
@@ -31,11 +36,8 @@ class UI extends CI_Controller{
         $this->load->view('template/header', $data);
     }
 
-    function datasetof(){
-        $id = $this->input->post('dataset');
-        $this->load->model('Dataset');
-        $this->load->model('Image');
-
+    function datasetof($id){
+//        $id = $this->input->post('dataset');
         $data['content'] = 'dataset';
         $data['nav'] = 'dataset';
         $data['title'] = $this->Dataset->GetDataSet($id)[0]['dataset_name'];
@@ -53,11 +55,12 @@ class UI extends CI_Controller{
         $this->load->view('template/header', $data);
     }
 
-    function datasetedit(){
+    function datasetedit($id){
         $data['content'] = 'dataset-edit';
         $data['nav'] = 'dataset';
         $data['title'] = 'Edit Data Set';
 
+        $data['dataset'] = $this->Dataset->GetDataSet($id);
 
         $this->load->view('/template/header', $data);
     }

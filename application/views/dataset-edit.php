@@ -21,7 +21,7 @@
             </div>
             <div class="col xs12 s4 left-align">
                 <div class="input-field" style="margin-top: 0;">
-                    <input type="text">
+                    <input type="text" value="<?php echo $dataset[0]['dataset_name'] ?>">
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <button class="btn waves-effect waves-light teal darken-2" type="submit">Change<i
                         class="material-icons right">swap_vertical_circle</i>
                 </button>
-                <a href="dataset" class="btn waves-effect waves-light red darken-2">Dicard<i
+                <a href="<?php echo base_url('UI/datasetof').'/'.$dataset[0]['id']?>" class="btn waves-effect waves-light red darken-2">Discard<i
                         class="material-icons right">loop</i>
                 </a>
             </div>
