@@ -64,4 +64,14 @@ class UI extends CI_Controller{
 
         $this->load->view('/template/header', $data);
     }
+
+    function dataseteditprocess(){
+        $datasetname = $this->input->post('datasetname');
+        $id = $this->input->post('datasetid');
+
+        $this->db->where('id', $id);
+        $this->db->update('dataset', array('dataset_name' => $datasetname));
+
+        $this->datasetof($id);
+    }
 }

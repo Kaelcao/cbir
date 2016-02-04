@@ -13,7 +13,7 @@
             <h3>Edit Data Set Information</h3>
         </div>
     </div>
-    <form action="" method="post">
+    <form action="<?php echo base_url('UI/dataseteditprocess'); ?>" method="post">
     <div class="center">
         <div class="row">
             <div class="col xs12 s5 right-align" style="padding-top: 10px;">
@@ -21,12 +21,13 @@
             </div>
             <div class="col xs12 s4 left-align">
                 <div class="input-field" style="margin-top: 0;">
-                    <input type="text" value="<?php echo $dataset[0]['dataset_name'] ?>">
+                    <input name="datasetname" type="text" value="<?php echo $dataset[0]['dataset_name'] ?>">
+                    <input name="datasetid" type="hidden" value="<?php echo $dataset[0]['id'] ?>">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="cneter" style="padding-top:5px;">
+            <div class="center" style="padding-top:5px;">
                 <button class="btn waves-effect waves-light teal darken-2" type="submit">Change<i
                         class="material-icons right">swap_vertical_circle</i>
                 </button>
