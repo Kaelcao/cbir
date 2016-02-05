@@ -9,13 +9,13 @@
 <!--Data Set Section Body content-->
 <div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="row" style="margin-top: 50px;">
-        <div class="col s4">
+        <div class="col s7 l6">
             <form id="dataset-form" action="" method="post">
                 <div class="row">
-                    <div class="col s3">
+                    <div class="col xs7 s7 m3">
                         <p>Data Set:</p>
                     </div>
-                    <div class="col s5">
+                    <div class="col xs8 m5">
                         <div class="input-field" style="margin-top: 0;">
                             <select name="dataset" id="dataset">
                                 <?php if (!isset($isSelected)) echo '<option value="" disabled selected>Choose a dataset</option>' ?>
