@@ -23,6 +23,7 @@ class Dataset extends CI_Model {
         return $result;
     }
 
+
     function GetTotalInstance(){
         $this->load->database();
         $result = $this->db->count_all('dataset');

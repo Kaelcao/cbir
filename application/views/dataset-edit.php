@@ -13,9 +13,26 @@
             <h3>Edit Data Set Information</h3>
         </div>
     </div>
-    <form action="<?php echo base_url('UI/dataseteditprocess'); ?>" method="post">
+    <form method="post">
     <div class="center">
         <div class="row">
+            <?php
+            if (isset($status)) {
+                if ($status == 1) {
+                    $class = 'teal';
+                } else {
+                    $class = 'red lighten-1';
+                }
+                ?>
+                <div class="col s12">
+                    <div class="card-panel <?php echo $class ?>">
+          <span class="white-text"><?php echo $message ?>
+          </span>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
             <div class="col xs12 s5 right-align" style="padding-top: 10px;">
                 Data Set Name:
             </div>
@@ -39,3 +56,14 @@
     </div>
     </form>
 </div>
+<?php
+if (isset($status) && $status == 1) {
+    ?>
+    <script>
+        window.setTimeout(function () {
+            window.location = "<?php echo base_url('UI/dataset') ?>";
+        }, 1000);
+    </script>
+    <?php
+}
+?>

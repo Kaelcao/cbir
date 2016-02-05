@@ -1,32 +1,37 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Do Son Tung
  * Date: 2/1/2016
  * Time: 5:25 PM
  */
-
-class UI extends CI_Controller{
-    function __construct(){
+class UI extends CI_Controller
+{
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('Dataset');
         $this->load->model('Image');
     }
 
-    function index(){
+    function index()
+    {
         $data['content'] = 'welcome_message';
         $data['title'] = 'Welcome to CBIR';
-        $this->load->view('template/header',$data);
+        $this->load->view('template/header', $data);
     }
 
-    function documentation(){
+    function documentation()
+    {
         $data['content'] = 'documentation';
         $data['nav'] = 'documentation';
         $data['title'] = 'Documentation';
         $this->load->view('template/header', $data);
     }
 
-    function dataset(){
+    function dataset()
+    {
         $data['all_data_set'] = $this->Dataset->GetAllDataSet();
         $data['total_instance'] = $this->Dataset->GetTotalInstance();
         $data['content'] = 'dataset';
@@ -36,7 +41,8 @@ class UI extends CI_Controller{
         $this->load->view('template/header', $data);
     }
 
-    function datasetof($id){
+    function datasetof($id)
+    {
 //        $id = $this->input->post('dataset');
         $data['content'] = 'dataset';
         $data['nav'] = 'dataset';
@@ -55,23 +61,70 @@ class UI extends CI_Controller{
         $this->load->view('template/header', $data);
     }
 
-    function datasetedit($id){
+    function datasetedit($id)
+    {
         $data['content'] = 'dataset-edit';
         $data['nav'] = 'dataset';
         $data['title'] = 'Edit Data Set';
 
         $data['dataset'] = $this->Dataset->GetDataSet($id);
 
+        if ($this->input->post()) {
+            $datasetname = $this->input->post('datasetname');
+            $id = $this->input->post('datasetid');
+
+
+            $num_rows = $this->db->where('dataset_name', $datasetname)->from('dataset')->count_all_results();
+            if ($num_rows > 0) {
+                $data['status'] = 0;
+                $data['message'] = $datasetname . ' has already existed';
+
+            } else {
+                $data['status'] = 1;
+                $data['message'] = 'Dataset successfully change to ' . $datasetname;
+                $this->db->where('id', $id);
+                $this->db->update('dataset', array('dataset_name' => $datasetname));
+            }
+        }
+
+
         $this->load->view('/template/header', $data);
     }
 
-    function dataseteditprocess(){
-        $datasetname = $this->input->post('datasetname');
-        $id = $this->input->post('datasetid');
+    function dataseteditprocess()
+    {
 
-        $this->db->where('id', $id);
-        $this->db->update('dataset', array('dataset_name' => $datasetname));
+    }
 
-        $this->datasetof($id);
+    function new_dataset()
+    {
+        $data['content'] = 'dataset-new';
+        $data['nav'] = 'dataset';
+        $data['title'] = 'Add Data Set';
+
+        if ($this->input->post()) {
+            $dataset = array(
+                'dataset_name' => $this->input->post('datasetname'),
+                'create_at' => get_current_time()
+            );
+            if ($dataset['dataset_name'] == "") {
+                $data['status'] = 0;
+                $data['message'] = 'The name of dataset cannot be empty';
+            } else {
+                $num_rows = $this->db->where('dataset_name', $dataset['dataset_name'])->from('dataset')->count_all_results();
+                if ($num_rows > 0) {
+                    $data['status'] = 0;
+                    $data['message'] = $dataset['dataset_name'] . ' has already existed';
+
+                } else {
+                    $data['status'] = 1;
+                    $data['message'] = $dataset['dataset_name'] . ' dataset added successfully';
+                    $this->db->insert('dataset', $dataset);
+                }
+            }
+        }
+
+
+        $this->load->view('/template/header', $data);
     }
 }

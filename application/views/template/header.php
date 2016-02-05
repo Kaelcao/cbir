@@ -11,6 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo $title?></title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
