@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
-
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url()?>/favicon.png"/>
     <title><?php echo $title ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
