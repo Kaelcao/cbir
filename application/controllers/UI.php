@@ -53,7 +53,9 @@ class UI extends CI_Controller
 
         $result_image = $this->Image->GetAllImageOfDataSet($id, $page,$limit);
         $data['number_of_image'] = count($this->Image->GetAllImageOfDataSet($id, $page, $limit));
-        $data['total_page'] = ceil(count($this->Image->GetAllImageOfDataSet($id, 1, 0))/8);
+        $total_image = count($this->Image->GetAllImageOfDataSet($id, 1, 0));
+        $data['total_image'] = $total_image;
+        $data['total_page'] = ceil($total_image/8);
         $data['image_of_dataset'] = $result_image;
         $data['isSelected'] = $id;
         $data['current_page'] = $page;

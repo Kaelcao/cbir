@@ -10,10 +10,10 @@ if (isset($current_page)) {
     $next_page = $current_page + 1;
 }
 ?>
-    <!--Data Set Section Body content-->
+<!--Data Set Section Body content-->
 <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    <div class="row" style="margin-top: 50px;">
+    <div class="row" style="margin: 50px 0 0 0;">
         <div class="col s7 l6">
             <form id="dataset-form" action="" method="post">
                 <div class="row">
@@ -54,13 +54,21 @@ if (isset($current_page)) {
             } ?>
         </div>
     </div>
+    <!--    SHOW TOTAL IMAGE OF THE DATASET-->
+    <?php if(isset($total_image)) {
+        echo '<div class="row">
+        <p style="margin: 0;">Total Image: '.$total_image.'</p>
+        </div>';
+    }
+    ?>
+    <!--    END OF SHOW TOTAL IMAGE OF THE DATASET-->
     <!--    IMAGE DISPLAY AREA-->
     <div class="row">
         <?php if (isset($image_of_dataset) && isset($number_of_image)) {
             for ($j = 0; $j < $number_of_image; $j++) {
                 $image_name = $image_of_dataset[$j]['name'];
-                $show_img_url = base_url('Indexing_images/show_histogram/'.$image_name);
-                echo '<a href="'.$show_img_url.'"><div class="col xs12 m3"><img class="hoverable" style="background-position:center;background-size:cover;background-image:url(\'' . $image_of_dataset[$j]['url'] . '\')" width="200px"
+                $show_img_url = base_url('Indexing_images/show_histogram/' . $image_name);
+                echo '<a href="' . $show_img_url . '"><div class="col xs12 m3"><img class="hoverable" style="background-position:center;background-size:cover;background-image:url(\'' . $image_of_dataset[$j]['url'] . '\')" width="200px"
                  height="200px"></div></a>';
             };
         }; ?>
@@ -68,7 +76,7 @@ if (isset($current_page)) {
     <!--    END OF IMAGE DISPLAY AREA-->
     <!--    Pagination-->
     <?php if (isset($isSelected)) {
-        if($total_page > 1) {
+        if ($total_page > 1) {
             echo '<div class="row">';
             if ($current_page != 1) {
                 echo '<div class="col s6 m3 push-m3 right-align" >
@@ -102,9 +110,9 @@ if (isset($current_page)) {
             if (action == '') {
                 $('#choose-btn').attr('disabled', 'disabled');
             } else {
-    $('#choose-btn') . removeAttr('disabled');
-    $("#dataset-form") . attr("action", "<?php echo base_url('UI') ?>/datasetof/" + action);
-}
-});
-});
-</script >
+                $('#choose-btn').removeAttr('disabled');
+                $("#dataset-form").attr("action", "<?php echo base_url('UI') ?>/datasetof/" + action);
+            }
+        });
+    });
+</script>

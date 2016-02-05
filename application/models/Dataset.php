@@ -9,6 +9,7 @@ class Dataset extends CI_Model {
     function GetAllDataSet(){
         $this->load->database();
         $this->db->select();
+        $this->db->order_by("dataset_name", "asc");
         $result = $this->db->get("dataset")->result_array();
 
         return $result;
@@ -18,6 +19,7 @@ class Dataset extends CI_Model {
         $this->load->database();
         $this->db->select();
         $this->db->where('id', $id);
+        $this->db->order_by("dataset_name", "desc");
         $result = $this->db->get('dataset')->result_array();
 
         return $result;
