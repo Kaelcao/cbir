@@ -41,7 +41,7 @@ class UI extends CI_Controller
         $this->load->view('template/header', $data);
     }
 
-    function datasetof($id)
+    function datasetof($id,  $page = 1, $limit = 8)
     {
 //        $id = $this->input->post('dataset');
         $data['content'] = 'dataset';
@@ -51,13 +51,13 @@ class UI extends CI_Controller
         $data['all_data_set'] = $this->Dataset->GetAllDataSet();
         $data['total_instance'] = $this->Dataset->GetTotalInstance();
 
-        $result_image = $this->Image->GetAllImageOfDataSet($id);
-        $data['number_of_image'] = count($this->Image->GetAllImageOfDataSet($id));
+        $result_image = $this->Image->GetAllImageOfDataSet($id, $page,$limit);
+        $data['number_of_image'] = count($this->Image->GetAllImageOfDataSet($id, $page, $limit));
+        $data['total_page'] = ceil(count($this->Image->GetAllImageOfDataSet($id, 1, 0))/8);
         $data['image_of_dataset'] = $result_image;
         $data['isSelected'] = $id;
-//        var_dump($data['image_of_dataset'] = $this->Image->GetAllImageOfDataSet($id));
-//        var_dump($this->Image->GetTotalInstance());
-//        var_dump($id);
+        $data['current_page'] = $page;
+
         $this->load->view('template/header', $data);
     }
 
