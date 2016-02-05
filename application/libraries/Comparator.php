@@ -31,10 +31,11 @@ class Comparator
         foreach ($datasets as $dataset) {
             $query = $this->CI->db->where('dataset_id', $dataset->id)->get('cbir_index');
             foreach ($query->result() as $row) {
+
                 $histogram = json_decode($row->histogram);
-                $red_diff = $this->euclidean_compare($histogram->red, $red);
-                $green_diff = $this->euclidean_compare($histogram->green, $green);
-                $blue_diff = $this->euclidean_compare($histogram->blue, $blue);
+                $red_diff = $this->euclidean_compare((array)$histogram->red, $red);
+                $green_diff = $this->euclidean_compare((array)$histogram->green, $green);
+                $blue_diff = $this->euclidean_compare((array)$histogram->blue, $blue);
                 $diff_avg = ($red_diff + $green_diff + $blue_diff) / 3;
                 $avg_list_with_url[$row->url] = $diff_avg;
 //            $avg_list[] = $diff_avg;
