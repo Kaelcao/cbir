@@ -73,7 +73,7 @@
             <form action="<?php echo base_url('UI/uploads/'.$dataset[0]['id']) ?>"
                   class="dropzone"
                   id="upload-dropzone"
-                  style="border: 1px solid #e5e5e5; height: 300px; "></form>
+                  style="border: 1px solid #e5e5e5; min-height: 300px; "></form>
         </div>
         <div class="modal-footer">
             <a href="#!"
