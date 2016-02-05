@@ -129,12 +129,13 @@ class Compare extends CI_Controller
         } else {
             $temp['images'] = array();
             $grayscale = json_decode($this->input->post('grayscale'));
+            $datasets = json_decode($this->input->post('datasets'));
 
             $number_images = $this->input->post('number');
 
             $this->indexer->normalize_array($grayscale);
 
-            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images);
+            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images,$datasets);
             $i = 0;
             foreach ($images as $key => $value) {
                 $temp['images'][$i]['url'] = $key;
