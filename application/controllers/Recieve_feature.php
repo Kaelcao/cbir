@@ -45,6 +45,7 @@ class Recieve_feature extends CI_Controller
             }
         }
     }
+
     public function receive_show_grayscale_images()
     {
 //        $avg_list = array();
@@ -53,11 +54,12 @@ class Recieve_feature extends CI_Controller
             echo json_encode($message);
         } else {
             $grayscale = json_decode($this->input->post('grayscale'));
+            $datasets = json_decode($this->input->post('datasets'));
             $number_images = $this->input->post('number');
 
             $this->indexer->normalize_array($grayscale);
+            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images, $datasets);
 
-            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images);
             foreach ($images as $key => $value) {
                 echo "<img src='$key'/> Value: $value <br/>";
             }
@@ -127,6 +129,7 @@ class Recieve_feature extends CI_Controller
         } else {
             $temp['images'] = array();
             $grayscale = json_decode($this->input->post('grayscale'));
+
             $number_images = $this->input->post('number');
 
             $this->indexer->normalize_array($grayscale);
@@ -142,7 +145,8 @@ class Recieve_feature extends CI_Controller
         echo json_encode($temp);
     }
 
-    public function get_dataset(){
+    public function get_dataset()
+    {
         header('Content-Type: application/json');
         $this->db->select();
         $result = $this->db->get("dataset")->result_array();
