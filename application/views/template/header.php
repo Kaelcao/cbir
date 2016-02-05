@@ -48,6 +48,14 @@
         main {
             flex: 1 0 auto;
         }
+
+        .documentation {
+            font-size: 24px;
+        }
+
+        .title {
+            color: ;
+        }
     </style>
 </head>
 <body>
