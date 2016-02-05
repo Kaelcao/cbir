@@ -28,13 +28,13 @@ class Comparator
     public function get_similar_images($red, $green, $blue, $number_images)
     {
         $avg_list_with_url = array();
-		
+
         $query = $this->CI->db->get('cbir_index');
         foreach ($query->result() as $row) {
             $histogram = json_decode($row->histogram);
             $red_diff = $this->euclidean_compare($histogram->red, $red);
             $green_diff = $this->euclidean_compare($histogram->green, $green);
-            $blue_diff = $this->euclidean_compare($histogram->blue, $blue);			
+            $blue_diff = $this->euclidean_compare($histogram->blue, $blue);
             $diff_avg = ($red_diff + $green_diff + $blue_diff) / 3;
             $avg_list_with_url[$row->url] = $diff_avg;
 //            $avg_list[] = $diff_avg;
@@ -43,17 +43,21 @@ class Comparator
         asort($avg_list_with_url);
         return array_slice($avg_list_with_url, 0, $number_images);
     }
-    public function get_similar_images_grayscale($grayscale, $number_images)
+
+    public function get_similar_images_grayscale($grayscale, $number_images, $datasets)
     {
         $avg_list_with_url = array();
 
-        $query = $this->CI->db->get('cbir_index');
-        foreach ($query->result() as $row) {
-            $histogram = json_decode($row->grayscale);
-            $diff = $this->euclidean_compare($histogram, $grayscale);
-            $avg_list_with_url[$row->url] = $diff;
+        foreach ($datasets as $dataset) {
+            $query = $this->CI->db->where('dataset_id', $dataset->id)->get('cbir_index');
+            foreach ($query->result() as $row) {
+                $histogram = json_decode($row->grayscale);
+                $diff = $this->euclidean_compare($histogram, $grayscale);
+                $avg_list_with_url[$row->url] = $diff;
 //            $avg_list[] = $diff_avg;
+            }
         }
+
         //$this->CI->indexer->normalize_array($avg_list_with_url);
         asort($avg_list_with_url);
         return array_slice($avg_list_with_url, 0, $number_images);
