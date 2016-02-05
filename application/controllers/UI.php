@@ -127,4 +127,54 @@ class UI extends CI_Controller
 
         $this->load->view('/template/header', $data);
     }
+
+    public function uploads($dataset_id)
+    {
+        error_reporting(E_ERROR | E_PARSE);
+        if (!empty($_FILES)) {
+            $tempFile = $_FILES['file']['tmp_name'];
+            $fileName = time() . random(10, true) . $_FILES['file']['name'];
+            $targetPath = getcwd() . '/images/';
+            $targetFile = $targetPath . $fileName;
+//            $path = $this->db->select('baigiuaki')->from('regis')->where('studentid', $this->auth['id'])->get()->row_array()['baigiuaki'];
+//            deleteFiles($path);
+            move_uploaded_file($tempFile, $targetFile);
+
+            //Image Resizing
+            $config['source_image'] = $targetFile;
+            $config['maintain_ratio'] = TRUE;
+            $config['width'] = 500;
+            $config['height'] = 500;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
+            //add to database
+            $histogram = json_encode($this->indexer->convert($fileName));
+
+            $grayscale = json_encode($this->indexer->convert_grayscale($fileName));
+
+            $url = base_url('images/' . $fileName);
+            $url_grayscale = base_url('images/grayscale/' . $fileName);
+
+
+            $data = array(
+                'name' => $fileName,
+                'histogram' => $histogram,
+                'url' => $url,
+                'url_grayscale' => $url_grayscale,
+                'grayscale' => $grayscale,
+                'dataset_id' => $dataset_id
+            );
+            $this->db->insert('cbir_index', $data);
+            //            <div class='btn-group-xoa' id='$id'style='position: relative;margin-left:10px;margin-top:10px;top:48px;'>
+//            <button type='button' class='btn btn-primary' style='float: left' data-toggle='collapse' data-target='#btn-xac-nhan-$id'>Xóa</button>
+//                    <div id='btn-xac-nhan-$id' class='collapse'>
+//                        <button class='btn btn-danger' onclick='xoaBaiCk($id)'>Xác nhận</button>
+//                    </div>
+//            </div>
+
+
+            echo "success";
+        }
+    }
 }

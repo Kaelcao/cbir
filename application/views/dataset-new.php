@@ -54,6 +54,9 @@
                     <button type="reset" href="" class="btn waves-effect waves-light red darken-2">Reset<i
                             class="material-icons right">loop</i>
                     </button>
+                    <a href="<?php echo base_url('UI/dataset')?>" class="btn waves-effect waves-light grey darken-2">Back<i
+                            class="material-icons right">skip_previous</i>
+                    </a>
                 </div>
             </div>
         </div>

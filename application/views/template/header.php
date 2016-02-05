@@ -12,20 +12,23 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
 
-    <title><?php echo $title?></title>
+    <title><?php echo $title ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.css">
 
     <!--    jQuery CDN-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script>
+
         $(document).ready(function ($) {
             $(function () {
 
@@ -34,7 +37,7 @@
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('select').material_select();
         });
     </script>
@@ -52,26 +55,35 @@
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="<?php echo base_url()?>" class="brand-logo">DURIO</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="<?php echo base_url() ?>"
+                                          class="brand-logo">DURIO</a>
         <ul class="right hide-on-med-and-down">
-            <li <?php if(isset($nav)){if($nav == "documentation") echo "class='active'";} ?>><a href="<?php echo base_url('UI/documentation');?>">Documentation</a></li>
-            <li <?php if(isset($nav)){if($nav == "dataset") echo "class='active'";} ?>><a href="<?php echo base_url('UI/dataset');?>">Data Set</a></li>
+            <li <?php if (isset($nav)) {
+                if ($nav == "documentation") echo "class='active'";
+            } ?>><a href="<?php echo base_url('UI/documentation'); ?>">Documentation</a></li>
+            <li <?php if (isset($nav)) {
+                if ($nav == "dataset") echo "class='active'";
+            } ?>><a href="<?php echo base_url('UI/dataset'); ?>">Data Set</a></li>
         </ul>
         <ul id="nav-mobile" class="side-nav">
-            <li <?php if(isset($nav)){if($nav == "documentation") echo "class='active'";} ?>><a href="<?php echo base_url('UI/documentation');?>">Documentation</a></li>
-            <li <?php if(isset($nav)){if($nav == "dataset") echo "class='active'";} ?>><a href="<?php echo base_url('UI/dataset');?>">Data Set</a></li>
+            <li <?php if (isset($nav)) {
+                if ($nav == "documentation") echo "class='active'";
+            } ?>><a href="<?php echo base_url('UI/documentation'); ?>">Documentation</a></li>
+            <li <?php if (isset($nav)) {
+                if ($nav == "dataset") echo "class='active'";
+            } ?>><a href="<?php echo base_url('UI/dataset'); ?>">Data Set</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
 <main>
-<!-- Main Content -->
-<?php $this->load->view($content, isset($data) ? $data : NULL); ?>
+    <!-- Main Content -->
+    <?php $this->load->view($content, isset($data) ? $data : NULL); ?>
 </main>
 <footer class="footer-copyright center">
-        <div class="container">
-            &#169; 2016 Copy Right by DURIO
-        </div>
+    <div class="container">
+        &#169; 2016 Copy Right by DURIO
+    </div>
 </footer>
 </body>
 <script src="//localhost:35729/livereload.js"></script>

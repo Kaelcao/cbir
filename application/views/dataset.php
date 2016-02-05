@@ -25,24 +25,28 @@
                                         echo "selected";
                                     };
                                     echo '>' . $all_data_set[$i]['dataset_name'] . '</option>';
-                                };?>
+                                }; ?>
                             </select>
                         </div>
                     </div>
                     <div class="col s3" style="padding-top:5px;">
-                        <button id="choose-btn" class="btn waves-effect waves-light light-blue lighten-1" type="submit" disabled>Choose<i
+                        <button id="choose-btn" class="btn waves-effect waves-light light-blue lighten-1" type="submit"
+                                disabled>Choose<i
                                 class="material-icons right">send</i>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
-        <?php if (isset($isSelected)) {
-            echo '
-                <div class="col s3" style="padding-top:5px;">
-                    <a href="'.base_url('UI').'/datasetedit/'.$isSelected.'" class="btn waves-effect waves-light red darken-3">EDIT</a>
-                </div>';
-        }?>
+
+        <div class="col s5" style="padding-top:5px;">
+            <a href="<?php echo base_url('ui/new_dataset') ?>" class="btn waves-effect waves-light green lighten-1">ADD</a>
+            <?php if (isset($isSelected)) {
+                echo '
+                    <a href="' . base_url('UI') . '/datasetedit/' . $isSelected . '" class="btn waves-effect waves-light red darken-3">EDIT</a>
+                ';
+            } ?>
+        </div>
     </div>
     <!--    IMAGE DISPLAY AREA-->
     <div class="row">
@@ -52,19 +56,19 @@
                  height="200px"></div>';
 
             };
-        };?>
+        }; ?>
     </div>
     <!--    END OF IMAGE DISPLAY AREA-->
 </div>
 <!--End of Data Set Section Body content-->
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#dataset").change(function () {
             var action = $("#dataset option:selected").val();
-            if ( action == ''){
+            if (action == '') {
                 $('#choose-btn').attr('disabled', 'disabled');
             }
-            else{
+            else {
                 $('#choose-btn').removeAttr('disabled');
                 $("#dataset-form").attr("action", "<?php echo base_url('UI') ?>/datasetof/" + action);
             }
