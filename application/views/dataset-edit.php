@@ -49,7 +49,7 @@
                                 class="material-icons right">swap_vertical_circle</i>
                         </button>
                         <a href="<?php echo base_url('UI/datasetof') . '/' . $dataset[0]['id'] ?>"
-                           class="btn waves-effect waves-light red darken-2">Discard<i
+                           class="btn waves-effect waves-light grey darken-2">Back<i
                                 class="material-icons right">loop</i>
                         </a>
 
