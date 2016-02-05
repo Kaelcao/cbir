@@ -68,26 +68,28 @@ if (isset($current_page)) {
     <!--    END OF IMAGE DISPLAY AREA-->
     <!--    Pagination-->
     <?php if (isset($isSelected)) {
-        echo '<div class="row">';
-        if ($current_page != 1) {
-            echo '<div class="col s6 m3 push-m3 right-align" >
+        if($total_page > 1) {
+            echo '<div class="row">';
+            if ($current_page != 1) {
+                echo '<div class="col s6 m3 push-m3 right-align" >
             <a href = "' . base_url('UI/datasetof') . '/' . $isSelected . '/' . $previous_page . '" class="btn waves-effect waves-light teal darken-2" style = "width: 100%;"> Previous</a >
         </div >';
-        } else {
-            echo '<div class="col s6 m3 push-m3 right-align" >
+            } else {
+                echo '<div class="col s6 m3 push-m3 right-align" >
             <a class="btn teal darken-2 disabled" style = "width: 100%;">Previous</a >
         </div >';
-        }
-        if ($current_page != $total_page) {
-            echo '<div class="col s6 m3 push-m3">
+            }
+            if ($current_page != $total_page) {
+                echo '<div class="col s6 m3 push-m3">
             <a href = "' . base_url('UI/datasetof') . '/' . $isSelected . '/' . $next_page . '" class="btn waves-effect waves-light teal darken-2" style = "width: 100%;" > Next</a >
         </div>';
-        } else {
-            echo '<div class="col s6 m3 push-m3">
+            } else {
+                echo '<div class="col s6 m3 push-m3">
             <a class="btn teal darken-2 disabled" style = "width: 100%;" > Next</a >
         </div>';
+            }
+            echo '</div >';
         }
-        echo '</div >';
     }
     ?>
     <!--    END OF PAGINATION-->
