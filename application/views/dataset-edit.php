@@ -70,7 +70,7 @@
     <div id="modal1" class="modal">
         <div class="modal-content">
             <h4>UPLOAD</h4>
-            <form action="<?php echo base_url('ui/uploads/'.$dataset[0]['id']) ?>"
+            <form action="<?php echo base_url('UI/uploads/'.$dataset[0]['id']) ?>"
                   class="dropzone"
                   id="upload-dropzone"
                   style="border: 1px solid #e5e5e5; height: 300px; "></form>

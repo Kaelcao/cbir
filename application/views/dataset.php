@@ -40,7 +40,7 @@
         </div>
 
         <div class="col s5" style="padding-top:5px;">
-            <a href="<?php echo base_url('ui/new_dataset') ?>" class="btn waves-effect waves-light green lighten-1">ADD</a>
+            <a href="<?php echo base_url('UI/new_dataset') ?>" class="btn waves-effect waves-light green lighten-1">ADD</a>
             <?php if (isset($isSelected)) {
                 echo '
                     <a href="' . base_url('UI') . '/datasetedit/' . $isSelected . '" class="btn waves-effect waves-light red darken-3">EDIT</a>
