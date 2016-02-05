@@ -79,12 +79,13 @@ class Compare extends CI_Controller
             $green = json_decode($this->input->post('green'));
             $blue = json_decode($this->input->post('blue'));
             $number_images = $this->input->post('number');
+            $datasets = json_decode($this->input->post('datasets'));
 
             $this->indexer->normalize_array($red);
             $this->indexer->normalize_array($green);
             $this->indexer->normalize_array($blue);
 
-            $images = $this->comparator->get_similar_images($red, $green, $blue, $number_images);
+            $images = $this->comparator->get_similar_images($red, $green, $blue, $number_images,$datasets);
             $i = 0;
             foreach ($images as $key => $value) {
                 $temp['images'][$i]['url'] = $key;
