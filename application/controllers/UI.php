@@ -136,12 +136,12 @@ class UI extends CI_Controller
             move_uploaded_file($tempFile, $targetFile);
 
             //Image Resizing
-            $config['source_image'] = $targetFile;
-            $config['maintain_ratio'] = TRUE;
-            $config['width'] = 500;
-            $config['height'] = 500;
-            $this->load->library('image_lib', $config);
-            $this->image_lib->resize();
+//            $config['source_image'] = $targetFile;
+//            $config['maintain_ratio'] = TRUE;
+//            $config['width'] = 500;
+//            $config['height'] = 500;
+//            $this->load->library('image_lib', $config);
+//            $this->image_lib->resize();
 
             //add to database
             $histogram = json_encode($this->indexer->convert($fileName));
