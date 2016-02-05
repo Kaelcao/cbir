@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="row">
-        <table>
+        <table class="responsive-table">
             <thead>
             <tr>
                 <th>Parameters</th>
@@ -107,7 +107,7 @@
         </div>
     </div>
     <div class="row">
-        <table>
+        <table class="responsive-table">
             <thead>
             <tr>
                 <th>Parameters</th>

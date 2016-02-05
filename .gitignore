@@ -4,6 +4,8 @@ application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
 
+images/*
+images/grayscale/*
 application/node_modules
 application/logs/*
 application/config/config.php
