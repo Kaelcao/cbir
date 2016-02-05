@@ -1,6 +1,6 @@
 <?php
 
-class Recieve_feature extends CI_Controller
+class Compare extends CI_Controller
 {
     public function get_test_histogram($name = '300.jpg')
     {
@@ -66,7 +66,7 @@ class Recieve_feature extends CI_Controller
         }
     }
 
-    public function receive_json()
+    public function receive_rgb()
     {
         header('Content-Type: application/json');
 //        $avg_list = array();
