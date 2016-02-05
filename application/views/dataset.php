@@ -60,7 +60,10 @@ if (isset($current_page)) {
             for ($j = 0; $j < $number_of_image; $j++) {
                 echo '<div class="col xs12 m3" ><img class="hoverable" src = "' . $image_of_dataset[$j]['url'] . '" width = "200px"
                  height = "200px" ></div > ';
-
+                $image_name = $image_of_dataset[$j]['name'];
+                $show_img_url = base_url('Indexing_images/show_histogram/'.$image_name);
+                echo '<a href="'.$show_img_url.'"><div class="col xs12 m3"><img class="hoverable" src="' . $image_of_dataset[$j]['url'] . '" width="200px"
+                 height="200px"></div></a>';
             };
         }; ?>
     </div>

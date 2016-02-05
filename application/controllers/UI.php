@@ -91,11 +91,6 @@ class UI extends CI_Controller
         $this->load->view('/template/header', $data);
     }
 
-    function dataseteditprocess()
-    {
-
-    }
-
     function new_dataset()
     {
         $data['content'] = 'dataset-new';

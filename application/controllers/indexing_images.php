@@ -6,9 +6,14 @@ class Indexing_images extends CI_Controller
 {
     public function show_histogram($name = '301.jpg')
     {
+        $data['content'] = 'chart';
+        $data['nav'] = 'dataset';
+        $data['title'] = 'Image detail';
 
-        $data = $this->indexer->convert($name);
-        $this->load->view('chart', $data);
+        $data['rgb_histogram'] = $this->indexer->convert($name);
+        $data['grayscale_histogram'] = $this->indexer->convert_grayscale($name);
+        $data['image_name'] = $name;
+        $this->load->view('/template/header', $data);
     }
 
 
@@ -19,14 +24,19 @@ class Indexing_images extends CI_Controller
     }
 
     // chay ham nay de convert het tat ca anh sang grayscale histogram va luu vao
-    public function convert_all_grayscale(){
+    public function convert_all_grayscale()
+    {
         ini_set('max_execution_time', 300); //300 seconds = 5 minutes
         $this->indexer->convert_all_grayscale($this->indexer->get_all_image('./images/'));
     }
-    public function test(){
+
+    public function test()
+    {
         echo 'hello';
     }
-    public function test_grayscale($name='300.jpg'){
+
+    public function test_grayscale($name = '300.jpg')
+    {
         $grayscale = $this->indexer->convert_grayscale($name);
         echo json_encode($grayscale);
 
