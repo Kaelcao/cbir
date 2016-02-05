@@ -141,4 +141,12 @@ class Recieve_feature extends CI_Controller
         }
         echo json_encode($temp);
     }
+
+    public function get_dataset(){
+        header('Content-Type: application/json');
+        $this->db->select();
+        $result = $this->db->get("dataset")->result_array();
+
+        echo json_encode($result);
+    }
 }

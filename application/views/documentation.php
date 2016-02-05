@@ -8,10 +8,20 @@
 ?>
 <div class="container">
     <div class="row">
-        <h2>Documentation</h2>
+        <h2 class="orange-text">Documentation</h2>
     </div>
     <div class="row">
-        <p>In this documentation we will show what this website can do and show the API of the server to </p>
+        <p class="documentation">In this documentation we will show what this website can do and show the API of the server to help build the client side</p>
+    </div>
+    <div class="row">
+        <h4 class="orange-text">Data Set</h4>
+        <p class="documentation">Data Set which is available in the database on the server can be viewed in the Data Set Section. In this section, you can see
+        image and modify the data set (including change name, or add some more images). If you want to have a new data set, you can add it and upload images to
+        form a brand new data set</p>
+    </div>
+    <div class="row">
+        <h4 class="orange-text">Client side - API</h4>
+        <p class="documentation">This is the API link that you need to send data to server so as it can <strong>return images</strong></p>
     </div>
     <div class="row">
         <div class="col xs6 l6">
