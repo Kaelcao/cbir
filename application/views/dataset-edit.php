@@ -66,24 +66,73 @@
         </form>
 
     </div>
+    <!--    <div id="modal1" class="modal modal-fixed-footer">-->
+    <!--        <div class="modal-content">-->
+    <!--            <h4>UPLOAD</h4>-->
+    <!--                        <form action="--><?php //echo base_url('UI/uploads/' . $dataset[0]['id']) ?><!--"-->
+    <!--                              class="dropzone"-->
+    <!--                              id="upload-dropzone"-->
+    <!--                              style="border: 1px solid #e5e5e5; min-height: 700px; "></form>-->
+    <!--        </div>-->
+    <!--        <div class="modal-footer">-->
+    <!--            <div class="progress">-->
+    <!--                <div class="determinate" id="upload-progress" style="width: 70%"></div>-->
+    <!--            </div>-->
+    <!---->
+    <!--        </div>-->
+    <!--    </div>-->
     <!-- Modal Structure -->
-    <div id="modal1" class="modal">
+    <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>UPLOAD</h4>
-            <form action="<?php echo base_url('UI/uploads/'.$dataset[0]['id']) ?>"
+            <form action="<?php echo base_url('UI/uploads/' . $dataset[0]['id']) ?>"
                   class="dropzone"
                   id="upload-dropzone"
                   style="border: 1px solid #e5e5e5; min-height: 300px; "></form>
         </div>
         <div class="modal-footer">
-            <a href="#!"
-               class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+            <div class="row" style="margin-bottom: 0">
+                <div class="col s9">
+                    <div id="count" style="margin-top:0.1rem ">0/0</div>
+                    <div class="progress" style="margin-top:0.3rem ">
+                        <div class="determinate" id="upload-progress" style="width: 0%"></div>
+                    </div>
+
+                </div>
+                <div class="col s3">
+                    <a href="#!"
+                       class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+                </div>
+            </div>
+
+
         </div>
     </div>
     <script>
+        var uploaded_image = 0;
+        var total_images = 0;
+        var percent = (uploaded_image / total_images) * 100;
         $(document).ready(function () {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
+            Dropzone.options.uploadDropzone = {
+                acceptedFiles: "image/jpeg",
+                success: function (file, response) {
+                    uploaded_image += 1;
+                    $('#count').html(uploaded_image + "/" + total_images);
+                    percent = (uploaded_image / total_images) * 100;
+                    $('#upload-progress').attr('style', "width: " + percent + "%");
+                },
+                init: function () {
+                    this.on("addedfile", function (file) {
+                        total_images += 1;
+                        $('#count').html(uploaded_image + "/" + total_images);
+                        percent = (uploaded_image / total_images) * 100;
+                        $('#upload-progress').attr('style', "width: " + percent + "%");
+                    });
+                }
+            };
+
         });
     </script>
 <?php
