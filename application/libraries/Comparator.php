@@ -17,6 +17,9 @@ class Comparator
 
     public function euclidean_compare($data_1, $data_2)
     {
+        if (!is_array($data_1) || !is_array($data_2)) {
+            return 1000;
+        }
         $temp = 0;
         $length = count($data_1);
         for ($i = 0; $i < $length; $i++) {
@@ -52,9 +55,14 @@ class Comparator
 
         foreach ($datasets as $dataset) {
             $query = $this->CI->db->where('dataset_id', $dataset->id)->get('cbir_index');
+//            echo json_encode($query->result());
             foreach ($query->result() as $row) {
                 $histogram = json_decode($row->grayscale);
+//                var_dump($grayscale);
+
                 $diff = $this->euclidean_compare($histogram, $grayscale);
+//                var_dump($diff);
+
                 $avg_list_with_url[$row->url] = $diff;
 //            $avg_list[] = $diff_avg;
             }
