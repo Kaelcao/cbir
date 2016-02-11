@@ -149,9 +149,9 @@ class Compare extends CI_Controller
 
     public function get_dataset()
     {
+		$this->load->model('Dataset');
         header('Content-Type: application/json');
-        $this->db->select();
-        $result = $this->db->get("dataset")->result_array();
+        $result = $this->Dataset->GetAllDataSet();
 
         echo json_encode($result);
     }
