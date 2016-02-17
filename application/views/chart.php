@@ -148,13 +148,13 @@
                         <?php
                         for ($i = 0;$i < 255;$i++){
                         ?> {
-                            x: <?php echo $i + 1 ?>,
+                            x: <?php echo $i ?>,
                             y: <?php echo $grayscale_histogram[$i] ?>
                         },
                         <?php
                         }
                         ?> {
-                            x: 256,
+                            x: 255,
                             y: <?php echo $grayscale_histogram[255] ?>
                         }
                     ]
