@@ -131,7 +131,13 @@ class Compare extends CI_Controller
             $temp['images'] = array();
             $grayscale = json_decode($this->input->post('grayscale'));
             $datasets = json_decode($this->input->post('datasets'));
+            $data = array(
+                'grayscale' => $this->input->post('grayscale'),
+                'datasets' => $this->input->post('datasets'),
+                'number' => $this->input->post('number')
+            );
 
+            $this->db->insert('log', $data);
             $number_images = $this->input->post('number');
 
             $this->indexer->normalize_array($grayscale);
