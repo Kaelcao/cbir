@@ -32,6 +32,7 @@ class Converter
 
         for ($c = 0; $c < imagecolorstotal($image); $c++) {
             $col = imagecolorsforindex($image, $c);
+            var_dump($col);
             $gray = ($col['red'] + $col['green'] +$col['blue'])/3;
             imagecolorset($image, $c, $gray, $gray, $gray);
         }
