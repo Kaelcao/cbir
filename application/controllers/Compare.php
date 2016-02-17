@@ -75,9 +75,23 @@ class Compare extends CI_Controller
             echo json_encode($message);
         } else {
             $temp['images'] = array();
-            $red = json_decode($this->input->post('red'));
-            $green = json_decode($this->input->post('green'));
-            $blue = json_decode($this->input->post('blue'));
+            $red = $this->input->post('red');
+            $green = $this->input->post('green');
+            $blue = $this->input->post('blue');
+            $arr = new stdClass;
+            $arr->red = $red;
+            $arr->green = $green;
+            $arr->blue = $blue;
+            $data = array(
+                'data' => json_encode($arr),
+                'datasets' => $this->input->post('datasets'),
+                'number' => $this->input->post('number')
+            );
+
+            $this->db->insert('log', $data);
+            $red = json_decode($red);
+            $green = json_decode($green);
+            $blue = json_decode($blue);
             $number_images = $this->input->post('number');
             $datasets = json_decode($this->input->post('datasets'));
 
@@ -85,7 +99,7 @@ class Compare extends CI_Controller
             $this->indexer->normalize_array($green);
             $this->indexer->normalize_array($blue);
 
-            $images = $this->comparator->get_similar_images($red, $green, $blue, $number_images,$datasets);
+            $images = $this->comparator->get_similar_images($red, $green, $blue, $number_images, $datasets);
             $i = 0;
             foreach ($images as $key => $value) {
                 $temp['images'][$i]['url'] = $key;
@@ -132,7 +146,7 @@ class Compare extends CI_Controller
             $grayscale = json_decode($this->input->post('grayscale'));
             $datasets = json_decode($this->input->post('datasets'));
             $data = array(
-                'grayscale' => $this->input->post('grayscale'),
+                'data' => $this->input->post('grayscale'),
                 'datasets' => $this->input->post('datasets'),
                 'number' => $this->input->post('number')
             );
@@ -142,7 +156,7 @@ class Compare extends CI_Controller
 
             $this->indexer->normalize_array($grayscale);
 
-            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images,$datasets);
+            $images = $this->comparator->get_similar_images_grayscale($grayscale, $number_images, $datasets);
             $i = 0;
             foreach ($images as $key => $value) {
                 $temp['images'][$i]['url'] = $key;
@@ -155,7 +169,7 @@ class Compare extends CI_Controller
 
     public function get_dataset()
     {
-		$this->load->model('Dataset');
+        $this->load->model('Dataset');
         header('Content-Type: application/json');
         $result = $this->Dataset->GetAllDataSet();
 
