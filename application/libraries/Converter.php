@@ -26,7 +26,16 @@ class Converter
         $destination = 'images/grayscale/'.$filename;
         $filename = base_url() . '/images/' . $filename;
         $image = imagecreatefromjpeg($filename);
-        imagefilter($image, IMG_FILTER_GRAYSCALE);
+        if (imageistruecolor($image)) {
+            imagetruecolortopalette($image, true, 256);
+        }
+
+        for ($c = 0; $c < imagecolorstotal($image); $c++) {
+            $col = imagecolorsforindex($image, $c);
+            $gray = ($col['red'] + $col['green'] +$col['blue'])/3;
+            imagecolorset($image, $c, $gray, $gray, $gray);
+        }
+//        imagefilter($image, IMG_FILTER_GRAYSCALE);
         imagejpeg($image,$destination);
 //        $rgb = imagecolorat($image, 10, 15);
 //        $r = ($rgb >> 16) & 0xFF;
