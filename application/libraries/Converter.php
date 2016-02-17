@@ -26,15 +26,35 @@ class Converter
         $destination = 'images/grayscale/'.$filename;
         $filename = base_url() . '/images/' . $filename;
         $image = imagecreatefromjpeg($filename);
-        if (imageistruecolor($image)) {
-            imagetruecolortopalette($image, true, 256);
-        }
+        $imgw = imagesx($image);
+        $imgh = imagesy($image);
 
-        for ($c = 0; $c < imagecolorstotal($image); $c++) {
-            $col = imagecolorsforindex($image, $c);
-            var_dump($col);
-            $gray = ($col['red'] + $col['green'] +$col['blue'])/3;
-            imagecolorset($image, $c, $gray, $gray, $gray);
+        for ($i=0; $i<$imgw; $i++)
+        {
+            for ($j=0; $j<$imgh; $j++)
+            {
+
+                // get the rgb value for current pixel
+
+                $rgb = ImageColorAt($image, $i, $j);
+
+                // extract each value for r, g, b
+
+                $rr = ($rgb >> 16) & 0xFF;
+                $gg = ($rgb >> 8) & 0xFF;
+                $bb = $rgb & 0xFF;
+
+                // get the Value from the RGB value
+
+                $g = round(($rr + $gg + $bb) / 3);
+
+                // grayscale values have r=g=b=g
+
+                $val = imagecolorallocate($image, $g, $g, $g);
+
+                // set the gray value
+                imagesetpixel ($image, $i, $j, $val);
+            }
         }
 //        imagefilter($image, IMG_FILTER_GRAYSCALE);
         imagejpeg($image,$destination);
