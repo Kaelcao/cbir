@@ -17,7 +17,7 @@ class Comparator
 
     public function euclidean_compare($data_1, $data_2)
     {
-        if (!is_array($data_1) || !is_array($data_2)) {
+        if (!is_array($data_1) || !is_array($data_2) || !(count($data_1) == count($data_2))) {
             return 1000;
         }
         $temp = 0;
