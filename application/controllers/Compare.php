@@ -95,7 +95,8 @@ class Compare extends CI_Controller
             $data = array(
                 'data' => json_encode($arr),
                 'datasets' => $this->input->post('datasets'),
-                'number' => $this->input->post('number')
+                'number' => $this->input->post('number'),
+				'created_at' => gmdate('Y-m-d H:i:s', time() + 7 * 3600)
             );
 
             $this->db->insert('log', $data);
@@ -154,7 +155,8 @@ class Compare extends CI_Controller
             $data = array(
                 'data' => json_encode($grayscale),
                 'datasets' => $this->input->post('datasets'),
-                'number' => $this->input->post('number')
+                'number' => $this->input->post('number'),
+				'created_at' => gmdate('Y-m-d H:i:s', time() + 7 * 3600)
             );
 
             $this->db->insert('log', $data);
