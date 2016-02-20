@@ -91,6 +91,7 @@ class Compare extends CI_Controller
             $arr->red = json_encode($red);
             $arr->green = json_encode($green);
             $arr->blue = json_encode($blue);
+
             $data = array(
                 'data' => json_encode($arr),
                 'datasets' => $this->input->post('datasets'),
@@ -151,7 +152,7 @@ class Compare extends CI_Controller
             $this->indexer->normalize_array($grayscale);
 
             $data = array(
-                'data' => $grayscale,
+                'data' => json_encode($grayscale),
                 'datasets' => $this->input->post('datasets'),
                 'number' => $this->input->post('number')
             );
